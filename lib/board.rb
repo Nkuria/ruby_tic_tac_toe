@@ -22,5 +22,14 @@ class Board
     end
 
     def check_winner
+        COMBOS.each do |combo|
+           return 1 if combo.all? {|cm| @board[cm].eql? 'x'}
+           return 1 if combo.all? {|cm| @board[cm].eql? 'o'}
+        end
+        0
+    end
+
+    def board_full?
+        !@board.include? 0
     end
 end
