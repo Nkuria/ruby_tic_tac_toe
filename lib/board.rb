@@ -24,7 +24,7 @@ class Board
     def check_winner
         COMBOS.each do |combo|
            return 1 if combo.all? {|cm| @board[cm].eql? 'x'}
-           return 1 if combo.all? {|cm| @board[cm].eql? 'o'}
+           return 2 if combo.all? {|cm| @board[cm].eql? 'o'}
         end
         0
     end
@@ -32,4 +32,24 @@ class Board
     def board_full?
         !@board.include? 0
     end
+
+    def game_status
+        if check_winner == 1
+            return 1
+        elsif check_winner == 2
+            return 2
+        elsif check_winner == 0 && !board_full?
+            return 3
+        elsif check_winner == 0 && board_full?
+            return 0
+        end
+    end
+
+    def print_board
+        @board.each do |b|
+            print b
+        end
+    end
+
+
 end

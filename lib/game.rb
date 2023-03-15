@@ -1,5 +1,4 @@
 class Game
-    COMBOS = [[1,2,3], [4,5,6], [7,8,9], [1,4,7] [2,5,8], [3,6,9], [1,5,9] [3,5,7]]
 
     def initialize(player_1, player_2)
         @player_1 = player_1
@@ -8,6 +7,23 @@ class Game
 
     def new_game
         @board = Board.new()
+        @move_count = 0
+    end
+
+    def game_play
+        if !@move_count.odd
+            puts "Player 1 turn"
+        else
+            puts "player 2 turn"
+
+        end
+
+        move = gets
+        if !@board.make_move?(move, @player_1.symb)
+            puts "invalid move"
+            return
+        end
+
     end
 
     
